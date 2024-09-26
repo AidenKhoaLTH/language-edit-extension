@@ -22,21 +22,21 @@ export const GetTemplate = {
     forFile: tsFilesName
   ) => {
     if (forFile === "language-main.constants.ts") {
-      return `
-    public static readonly Z_${id} = "Z_${id}";`
+      return `    public static readonly Z_${id} = "Z_${id}";
+`
     }
     if(forFile === "messages.ts.en.xlf"){
-        return `
-        <trans-unit id="Z_${id}" >
-          <source>${source}</source>
-          <target>${source}</target>
-        </trans-unit>`
+        return `      <trans-unit id="Z_${id}">
+        <source>${source}</source>
+        <target>${source}</target>
+      </trans-unit>
+`
     }
-    return `
-        <trans-unit id="Z_${id}" >
-          <source>${source}</source>
-          <target>${target}</target>
-        </trans-unit>`
+    return `      <trans-unit id="Z_${id}">
+        <source>${source}</source>
+        <target>${target}</target>
+      </trans-unit>
+`
   },
   filei18nTemplate: (
     id: string,
@@ -45,23 +45,23 @@ export const GetTemplate = {
     forFile: i18nFilesName
   ) => {
     if (forFile === "messages.xlf") {
-      return `
-      <trans-unit id="${id}" datatype="html">
+      return `      <trans-unit id="${id}" datatype="html">
         <source>${source}</source>
-      </trans-unit>`
+      </trans-unit>
+`
     }
     if(forFile === "messages.en.xlf"){
-        return `
-      <trans-unit id="${id}" datatype="html">
+        return `      <trans-unit id="${id}" datatype="html">
         <source>${source}</source>
         <target state="final">${source}</target>
-      </trans-unit>`
+      </trans-unit>   
+`
     }
-    return `
-      <trans-unit id="${id}" datatype="html">
+    return `      <trans-unit id="${id}" datatype="html">
         <source>${source}</source>
         <target state="final">${target}</target>
-      </trans-unit>`
+      </trans-unit>   
+`
   }
 }
 
@@ -92,6 +92,6 @@ export const getLineToEdit = (fileName: i18nFilesName & tsFilesName): number => 
     case "language-main.constants.ts":
       return 1
     default:
-      return 3
+      return 4
   }
 }

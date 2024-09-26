@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const panel = vscode.window.createWebviewPanel(
 		'inputWebview', // Identifies the type of the webview
-		'Input Form',   // Title of the panel displayed to the user
+		selection === FileTypeConst.TS ? 'Add Messages - TS' : 'Add Messages - i18n',   // Title of the panel displayed to the user
 		vscode.ViewColumn.One, // Editor column to show the new webview panel in
 		{
 		  enableScripts: true // Allow scripts in the webview

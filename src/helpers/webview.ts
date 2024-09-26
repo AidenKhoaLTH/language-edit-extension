@@ -10,7 +10,7 @@ export function getWebviewContent(fileType: typeof FileTypeConst) {
         <title>Input Form</title>
       </head>
       <body>
-        <h1>Enter Your Inputs For ${fileType} files</h1>
+        <h1>Add Messages To ${fileType} Fsiles</h1>
         <form id="inputForm">
           <label for="id">ID:</label>
           <input type="text" id="id" name="id" required><br><br>

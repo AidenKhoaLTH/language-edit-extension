@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "add-messages.helloWorld",
-        "title": "Hello World"
+        "command": "add-messages.etms",
+        "title": "Add Messages"
       }
     ]
   },
