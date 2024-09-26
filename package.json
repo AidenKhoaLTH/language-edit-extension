@@ -1,8 +1,12 @@
 {
-  "name": "add-messages",
-  "displayName": "add-messages",
+  "name": "add-messages-etms",
+  "displayName": "add-messages-etms",
   "description": "Add messages etms",
   "version": "0.0.1",
+  "author": {
+    "name": "Aiden Khoa",
+    "email": "aiden.khoa@logtechub.com"
+  },
   "engines": {
     "vscode": "^1.93.0"
   },

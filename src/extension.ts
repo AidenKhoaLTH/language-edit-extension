@@ -4,7 +4,7 @@ import { FileTypeConst, i18nFiles } from './helpers/constant';
 import { handleInputs } from './helpers/template';
 
 export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand('add-messages.helloWorld', async () => {
+  let disposable = vscode.commands.registerCommand('add-messages.etms', async () => {
 	const firstOptions = [FileTypeConst.TS, FileTypeConst.i18n];
 	const selection = await vscode.window.showQuickPick(firstOptions, {
 	  placeHolder: 'Choose type of messages to be added'
