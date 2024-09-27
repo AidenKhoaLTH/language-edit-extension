@@ -90,7 +90,7 @@ export const getTemplate = (
 export const getLineToEdit = (fileName: i18nFilesName & tsFilesName): number => {
   switch(fileName){
     case "language-main.constants.ts":
-      return 1
+      return 2
     default:
       return 4
   }
