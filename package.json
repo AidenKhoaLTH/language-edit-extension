@@ -3,10 +3,12 @@
   "displayName": "add-messages-etms",
   "description": "Add messages etms",
   "version": "0.0.1",
+  "publisher": "Aiden Khoa",
   "author": {
     "name": "Aiden Khoa",
     "email": "aiden.khoa@logtechub.com"
   },
+  "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.93.0"
   },
@@ -21,7 +23,18 @@
         "command": "add-messages.etms",
         "title": "Add Messages"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Add messages etms Configuration",
+      "properties": {
+        "yourExtension.filesPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the messages files directory. Just copy the file paths, seperated by \\';\\'. \n eg: D:\\etms-15\\WebApp\\SourceCode\\src\\locale\\messages.xlf"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
