@@ -9,28 +9,21 @@ import {
 import * as fs from "fs"
 import * as path from "path"
 
-function findFileRecursively(
-  directory: string,
-  fileName: string
-): string | null {
-  const files = fs.readdirSync(directory)
 
-  for (const file of files) {
-    const fullPath = path.join(directory, file)
-    const stat = fs.statSync(fullPath)
+const findFile = (fileName: string) => {
+  // Normalize the path to ensure it's in the correct format
+  const filesPaths = vscode.workspace.getConfiguration().get<string>("yourExtension.filesPath")!.trim().split(";");
+  const filePath = filesPaths.find(path => path.trim().includes(fileName))!
+  
+  const normalizedPath = path.normalize(filePath);
+  // Convert to a URI
+  const uri = vscode.Uri.file(normalizedPath);
 
-    if (stat.isDirectory()) {
-      const found = findFileRecursively(fullPath, fileName)
-      if (found) {
-        return found
-      }
-    } else if (file === fileName) {
-      return fullPath
-    }
-  }
-
-  return null
+  return uri;
 }
+
+
+
 export async function handleInputs(
   id: string,
   source: string,
@@ -41,7 +34,7 @@ export async function handleInputs(
 
   if (workspaceFolder) {
     // Construct the file path
-    const filePath = findFileRecursively(workspaceFolder.uri.fsPath, fileName)
+    const filePath = findFile(fileName)
     if (!filePath) {
       vscode.window.showErrorMessage(`File ${fileName} not found.`)
       return

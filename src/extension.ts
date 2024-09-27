@@ -5,6 +5,14 @@ import { handleInputs } from './helpers/template';
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand('add-messages.etms', async () => {
+	const filesPath = vscode.workspace.getConfiguration().get<string>("yourExtension.filesPath");
+
+	const filesPathLength = filesPath ? filesPath.trim().split(";").filter(i => i !== '').length : 0;
+	if(filesPathLength < 6){
+		vscode.window.showErrorMessage(`You\'re missing ${6 - filesPathLength} paths.\nPlease set i18n files Path and ts files Path in your extension settings`);
+		return;	
+	}
+
 	const firstOptions = [FileTypeConst.TS, FileTypeConst.i18n];
 	const selection = await vscode.window.showQuickPick(firstOptions, {
 	  placeHolder: 'Choose type of messages to be added'
@@ -35,6 +43,7 @@ export function activate(context: vscode.ExtensionContext) {
 				handleInputs(message.id, message.source, message.target, 'language-main.constants.ts');
 				handleInputs(message.id, message.source, message.target, 'messages.ts.en.xlf');
 				handleInputs(message.id, message.source, message.target, 'messages.ts.vi.xlf');
+				panel.webview.postMessage({ command: 'enableSubmitButton' });
 				return;
 			}
 		},
@@ -52,6 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 				handleInputs(message.id, message.source, message.target, 'messages.xlf');
 				handleInputs(message.id, message.source, message.target, 'messages.en.xlf');
 				handleInputs(message.id, message.source, message.target, 'messages.vi.xlf');
+				panel.webview.postMessage({ command: 'enableSubmitButton' });
 				return;
 			}
 		},
@@ -64,6 +74,5 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(disposable);
 }
-
 
 export function deactivate() {}
